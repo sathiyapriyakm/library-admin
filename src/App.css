@@ -1,38 +1,137 @@
+
+*{
+  box-sizing:border-box;
+}
+
 .App {
-  text-align: center;
+  font-family: sans-serif;
+  /* text-align: center; */
+}
+.student-poster {
+  height: 200px;
+  width:150px;
+  /* zoom  in */
+  object-fit: cover;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.student-name {
+  font-size: 24px;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.student-specs {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+
+.student-container {
+  /* background-color: orange; */
+  width:100%;
+   /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+/* RAM */
+.student-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  margin-top: 40px;
+  background-color: lightgrey;
+  padding:10px 10px;
+}
+
+/* body {
+  margin: 24px;
+} */
+
+
+.add-student-form{
+  display:flex;
+  gap:25px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width:100%;
+  padding:100px 100px;
+}
+  .add-student-name{
+  width:90%;
+  height:50px;
+  /* margin-top: 10px; */
+}
+.add-student-btn{
+  width:90%;
+  height:50px;
+  font-size: 20px;;
+  background-color:skyblue;
+  /* margin-top: 10px; */
 }
 
-.App-link {
-  color: #61dafb;
+
+.teacher-poster {
+  height: 200px;
+  width:150px;
+  /* zoom  in */
+  object-fit: cover;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.teacher-name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.teacher-specs {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+
+.teacher-container {
+  /* background-color: orange; */
+  width:100%;
+   /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+/* RAM */
+.teacher-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  margin-top: 40px;
+  background-color: lightgrey;
+  padding:10px 10px;
+}
+
+/* body {
+  margin: 24px;
+} */
+
+
+.add-teacher-form{
+  display:flex;
+  gap:25px;
+  flex-direction: column;
+  align-items: center;
+  width:100%;
+  padding:100px 100px;
+}
+  .add-teacher-name{
+  width:90%;
+  height:50px;
+  /* margin-top: 10px; */
+}
+.add-teacher-btn{
+  width:90%;
+  height:50px;
+  font-size: 20px;;
+  background-color:skyblue;
+  /* margin-top: 10px; */
 }

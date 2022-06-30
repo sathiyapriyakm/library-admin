@@ -1,38 +1,174 @@
-import {CardDashboard} from "./CardDashboard"
-import {useState,useEffect} from 'react';
-export function Dashboard(){
-    const [numOfTeacher,setNumOfTeacher]=useState(null);
-    const [numOfStudent,setNumOfStudent]=useState(null);
-   
-    const getTeachers=()=>{
-        fetch("https://62aa7f0d371180affbd633f8.mockapi.io/teachers",{
-          method:"GET",
-        }
+import { Typography, Container, Grid, Paper, Box, Stack } from '@mui/material'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
+import Button from '@mui/material/Button'
+
+
+export const Dashboard = () => {
+  const navigate=useNavigate();
+
+  const [books, setBooks] = useState([]);
+  const getBooks=()=>{
+    fetch(`https://61ea3e657bc0550017bc6651.mockapi.io/viewbooks`,{
+      method:"GET",
+    }
+    )
+    .then((data)=>(data.json()))
+    .then((data1)=>setBooks(data1))
+    .catch((error)=>console.log(error));
+    }  
+
+    const deleteBook =(id) => {
+      fetch(`https://61ea3e657bc0550017bc6651.mockapi.io/viewbooks/${id}`,{
+        method:"DELETE",
+      }
         )
-        .then((data)=>(data.json()))
-        .then((mvs)=> {setNumOfTeacher(mvs.length)}
-        );
-        }   
-        const getStudents=()=>{
-            fetch(`https://62aa7f0d371180affbd633f8.mockapi.io/students/`,{
-              method:"GET",
-            }
-            )
-            .then((data)=>(data.json()))
-            .then((mv)=>setNumOfStudent(mv.length));
-            }   
-        useEffect(()=>{getTeachers();getStudents()},[]);
-    return(
-<>
-<div className="d-sm-flex align-items-center  mb-4">
-<h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+        .then(()=>getBooks())
+        .catch((error)=>console.log(error));
+  
+      }
+  useEffect(() => {
+    getBooks()
+  }, [])
+  return (
+    <>
+      <Typography variant="h4" pb={2}
+      sx={{
+        textAlign: 'center',
+      }}>
+        Available Books
+      </Typography>
+      <Container maxWidth="md">
+        <Grid container spacing={2}>
+          {books.map((book) => (
+            <Grid key={book.id} item xs={12} sm={12} md={12}>
+              <Paper elevation={3} sx={{ display: 'flex' }}>
+                <Box
+                  sx={{
+                    width: '20%',
+                    height: '100%',
+                    display: { xs: 'none', md: 'flex' },
+                  }}
+                >
+                  <Card
+                    sx={{
+                      maxWidth: '100%',
+                      marginRight: '10px',
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                      }}
+                      image={book.ImageUrl}
+                      alt="Paella dish"
+                    />
+                  </Card>
+                </Box>
 
-</div>
-<div className="row">
-<CardDashboard detail="Total number of students" value={numOfStudent} iprop="fas fa-book-reader fa-2x text-gray-300"/>
- <CardDashboard detail="Total number of teachers" value={numOfTeacher} iprop="fas fa-chalkboard-teacher fa-2x text-gray-300"/>  
-</div>
-
-</>
-);
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '80%',
+                    margin: { xs: '10px 10px', md: '10px 10px' },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: '100%',
+                      width: '100%',
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        textAlign: 'start',
+                      }}
+                    >
+                      {book.BookTitle}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        textAlign: 'start',
+                      }}
+                    >
+                      by {book.Author}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        textAlign: 'start',
+                      }}
+                    >
+                      Book ID: {book.id}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        textAlign: 'start',
+                      }}
+                    >
+                      ISBN-10: {book.ISBN}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        textAlign: 'start',
+                      }}
+                    >
+                      Language: {book.Language}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        textAlign: 'start',
+                      }}
+                    >
+                      Quantity: {book.Quantity}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Stack
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        paddingBottom: '10px',
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        color="success"
+                        sx={{ marginRight: '10px' }}
+                      onClick={()=>navigate(`/books/issue/${book.id}`)}
+                      >
+                        Issue
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={(e) => deleteBook(book.id)}
+                      >
+                        Remove
+                      </Button>
+                    </Stack>
+                  </Box>
+                </Box>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
+  )
 }
+

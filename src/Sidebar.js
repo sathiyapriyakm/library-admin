@@ -21,12 +21,12 @@ export function Sidebar() {
         <hr className="sidebar-divider" />
 
         <div className="sidebar-heading">
-          DETAILS
+          Manage Books
         </div>
 
        <SideBarComp />
 
-        <SideBarUtil />
+        {/* <SideBarUtil /> */}
 
         <hr className="sidebar-divider" />     
       </ul>

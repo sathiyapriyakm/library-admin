@@ -10,13 +10,14 @@ export function SideBarComp() {
       <a onClick={() => setShow(!show)} className={show ? "nav-link collapsed" : "nav-link"}  data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded={show ? "false" : "true"} aria-controls="collapseTwo">
         <i className="fas fa-book-reader"></i>
-        <span>Students</span>
+        <span>Book Maintainance</span>
       </a>
       <div id="collapseTwo" className={show ? "collapse show" : "collapse"} aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div className="bg-white py-2 collapse-inner rounded">
-          <h6 className="collapse-header">STUDENT SECTION:</h6>
-          <a onClick={()=>navigate("/StudentDetails")} className="collapse-item" >STUDENT DETAILS</a>
-          <a onClick={()=>navigate("/Add-Student")} className="collapse-item" >ADD STUDENT</a>
+          <h6 className="collapse-header">Manage Books</h6>
+          <a onClick={()=>navigate("/StudentDetails")} className="collapse-item" >Books List</a>
+          <a onClick={()=>navigate("/Add-Student")} className="collapse-item" >Add Books</a>
+          <a onClick={()=>navigate("/StudentDetails")} className="collapse-item" >Issued Books List</a>
         </div>
       </div>
     </li>

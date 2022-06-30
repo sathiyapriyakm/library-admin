@@ -15,6 +15,7 @@ import { Register } from './Register';
 import { NotFound } from './NotFound';
 import { StudentEdit } from './StudentEdit';
 import { TeacherEdit } from './TeacherEdit';
+import { BookIssue } from './BookIssue';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/404-Page" element={<MainBoard flow="404-Page"/>}/>
           <Route path="*" element={<Navigate replace to="/404-Page"/>}/>
           <Route path="/Dashboard" element={<Navigate replace to="/"/>}/>
+          <Route path="/books/issue/:bookId" element={<MainBoard flow="BookIssue"/>}/>
           <Route path="/students/edit/:studentId" element={<MainBoard flow="StudentEdit"/>}/>
           <Route path="/teachers/edit/:teacherId" element={<MainBoard flow="TeacherEdit"/>}/>
           <Route path="/Add-Student" element={<MainBoard flow="AddStudent"/>}/>
@@ -65,6 +67,7 @@ function MainBoard({flow}){
                    "404-Page":<NotFound/>,
                    "StudentEdit":<StudentEdit/>,
                    "TeacherEdit":<TeacherEdit/>,
+                   "BookIssue":<BookIssue/>,
                }[flow]
                }
             </section>  
@@ -75,3 +78,4 @@ function MainBoard({flow}){
       </div></>
     );
 }
+

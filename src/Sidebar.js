@@ -1,7 +1,6 @@
 
 import { SideBarComp } from "./SideBarComp";
 import { SideBarDashboard } from "./SideBarDashboard";
-import { SideBarUtil } from "./SideBarUtil";
 
 export function Sidebar() {
   return (
@@ -25,8 +24,6 @@ export function Sidebar() {
         </div>
 
        <SideBarComp />
-
-        {/* <SideBarUtil /> */}
 
         <hr className="sidebar-divider" />     
       </ul>

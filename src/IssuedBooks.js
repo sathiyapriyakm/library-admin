@@ -9,10 +9,12 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button';
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 
 
 export function IssuedBooks() {
   const [issuedBooks,setIssuedBooks]=useState([]);
+  const navigate=useNavigate();
   const getIssuedBooks=()=>{
     fetch(`https://61ea3e657bc0550017bc6651.mockapi.io/issuedBooks`)
     .then((data)=>(data.json()))
@@ -70,7 +72,7 @@ export function IssuedBooks() {
                     variant="contained"
                     color="warning"
                     sx={{ marginRight: 1, marginBottom: 1 }}
-                    // onClick={(e) => selectedIssuedBook(book.id)}
+                    onClick={()=>navigate(`/books/issue/edit/${book.id}`)}
                   >
                     Edit
                   </Button>

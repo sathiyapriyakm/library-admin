@@ -10,11 +10,11 @@ import * as Yup from "yup";
 import { Typography } from "@mui/material";
 
 
-export function BookIssue() {
+export function EditIssuedBook() {
   const { bookId } = useParams();
   const [book,setBook]=useState(null);
   const getBook=()=>{
-    fetch(`https://61ea3e657bc0550017bc6651.mockapi.io/viewbooks/${bookId}`,{
+    fetch(`https://61ea3e657bc0550017bc6651.mockapi.io/issuedBooks/${bookId}`,{
       method:"GET",
     }
     )
@@ -46,9 +46,9 @@ export function BookIssue() {
   const navigate = useNavigate();
 
     const editBook =(bookDetails) => {
-      fetch(`https://61ea3e657bc0550017bc6651.mockapi.io/issuedBooks`,
+      fetch(`https://61ea3e657bc0550017bc6651.mockapi.io/issuedBooks/${bookDetails.BookID}`,
       {
-        method:"POST",
+        method:"PUT",
         body: JSON.stringify(bookDetails),
         headers:{"Content-Type":"application/json"},
     }).then(()=>{navigate("/issuedBooks")}).catch((e)=>console.log("ERROR"));
@@ -59,12 +59,12 @@ export function BookIssue() {
             BookID: book.id,
             BookTitle: book.BookTitle,
             ISBN: book.ISBN,
-            Borrower: '',
-            Issuer: '',
-            Quantity: '',
-            DateOfIssue: '',
-            DateOfReturn: '',
-            ReturnStatus: '',
+            Borrower: book.Borrower,
+            Issuer: book.Issuer,
+            Quantity: book.Quantity,
+            DateOfIssue:book.DateOfIssue,
+            DateOfReturn:book.DateOfReturn,
+            ReturnStatus:book.ReturnStatus,
           },
       validationSchema:bookValidationSchema ,
       onSubmit:(bookDetails)=>{
@@ -82,7 +82,7 @@ export function BookIssue() {
       sx={{
         textAlign: 'center',
       }}>
-        Details to Issue Book
+         Edit Issue  Details
       </Typography>
         <TextField
         className="add-book-name"
@@ -186,7 +186,7 @@ export function BookIssue() {
             <Button className="add-book-btn" 
           color="success"
         type="submit"
-        variant="contained">Issue Book</Button>
+        variant="contained">Save</Button>
       </form> 
     </div>;
 }

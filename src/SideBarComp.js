@@ -15,9 +15,9 @@ export function SideBarComp() {
       <div id="collapseTwo" className={show ? "collapse show" : "collapse"} aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div className="bg-white py-2 collapse-inner rounded">
           <h6 className="collapse-header">Manage Books</h6>
-          <a onClick={()=>navigate("/StudentDetails")} className="collapse-item" >Books List</a>
-          <a onClick={()=>navigate("/Add-Student")} className="collapse-item" >Add Books</a>
-          <a onClick={()=>navigate("/StudentDetails")} className="collapse-item" >Issued Books List</a>
+          <a onClick={()=>navigate("/BooksList")} className="collapse-item" >Books List</a>
+          <a onClick={()=>navigate("/Add-Books")} className="collapse-item" >Add Books</a>
+          <a onClick={()=>navigate("/issuedBooks")} className="collapse-item" >Issued Books List</a>
         </div>
       </div>
     </li>

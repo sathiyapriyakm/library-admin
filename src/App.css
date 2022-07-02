@@ -71,6 +71,30 @@
   /* margin-top: 10px; */
 }
 
+.add-book-form{
+  display:flex;
+  gap:25px;
+  flex-direction: column;
+  align-items: center;
+  width:100%;
+  padding:100px 100px;
+}
+  .add-book-name{
+  width:90%;
+  height:50px;
+  /* margin-top: 10px; */
+}
+.add-book-btn{
+  width:90%;
+  height:50px;
+  font-size: 20px;;
+  background-color:skyblue;
+  /* margin-top: 10px; */
+}
+
+
+
+
 
 .teacher-poster {
   height: 200px;
